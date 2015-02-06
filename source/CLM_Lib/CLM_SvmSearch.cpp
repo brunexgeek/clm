@@ -15,26 +15,22 @@
 //		June, 2011.
 ////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 
 #include "omp.h"
 
 
-#ifdef __cplusplus
-extern "C" {
-#endif
 
-#include "cv.h"
-#include "highgui.h"
 
-#include "clm.h"
-#include "clm_priv.h"
+#include <opencv/cv.h>
+#include <opencv/highgui.h>
 
-#ifdef __cplusplus
-}
-#endif
+#include "CLM.h"
+#include "CLM_priv.h"
 
-#include "..\QuadProg++\QuadProg_3.hh"
+
+
+#include "QuadProg++/QuadProg_3.hh"
 
 static void CopyImageToMat(IplImage *pImg, CvMat *pMat);
 static void DumpResponse(CvMat * r);

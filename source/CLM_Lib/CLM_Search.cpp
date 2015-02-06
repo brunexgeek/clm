@@ -15,25 +15,17 @@
 //		June, 2011.
 ////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#include <opencv/cv.h>
+#include <opencv/highgui.h>
 
-#include "cv.h"
-#include "highgui.h"
+#include "CLM.h"
+#include "CLM_priv.h"
 
-#include "clm.h"
-#include "clm_priv.h"
-
-#ifdef __cplusplus
-}
-#endif
-
-extern DWORD CountsPerSec;
+/*extern DWORD CountsPerSec;
 static LARGE_INTEGER L1;
-static LARGE_INTEGER L2;
+static LARGE_INTEGER L2;*/
 
 #define NUM_ITER		10		// Default number of iterations.
 

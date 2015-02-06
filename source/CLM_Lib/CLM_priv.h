@@ -12,10 +12,11 @@
 #ifndef _CLM_PRIV_H_
 #define _CLM_PRIV_H_
 
-#include "cv.h"
-#include "highgui.h"
+#include <opencv/cv.h>
+#include <opencv/highgui.h>
 
-#include "clm.h"
+#include "CLM.h"
+
 ////////////////////////
 // Data structures
 ////////////////////////
@@ -36,5 +37,5 @@ int CLM_align_data_inverse(float *pdat, float *tform, int numPts, float *pout);
 
 
 
-#endif _CLM_PRIV_H_
+#endif // _CLM_PRIV_H_
 

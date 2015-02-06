@@ -37,9 +37,8 @@
  ****************************************/
 
 
-#include "stdafx.h"
+#include "StdAfx.h"
 
-#include "windows.h"
 
 
 #include <iostream>
@@ -70,16 +69,16 @@ static double scalar_product(double x[], double y[], int n);
 static double distance(double a, double b);
 
 // Utility functions for printing vectors and matrices
-static void print_matrix(char* name, double A[][MATRIX_DIM_440], int n);
+static void print_matrix(const char* name, double A[][MATRIX_DIM_440], int n);
 static void print_rmatrix(char* name, double A[][MATRIX_DIM_440], int n, int m);
 static void print_vector(char* name, double v[], int n);
 static void print_ivector(char* name, int v[], int n);
 
 // The Solving function, implementing the Goldfarb-Idnani method
-extern DWORD CountsPerSec;
+/*extern DWORD CountsPerSec;
 static LARGE_INTEGER L1;
 static LARGE_INTEGER L2;
-static float time;
+static float time;*/
 
 #include "omp.h"
 
@@ -127,7 +126,7 @@ double solve_quadprog_136(double G[][MATRIX_DIM_440], double g0[], int n,
 		c1 += G[i][i];
 	}
 
-QueryPerformanceCounter(&L1);
+//QueryPerformanceCounter(&L1);
 
 	/* decompose the matrix G in the form L^T L */
 	cholesky_decomposition(G, n);
@@ -135,8 +134,8 @@ QueryPerformanceCounter(&L1);
   print_matrix("G", G, n);
 #endif
 
-QueryPerformanceCounter(&L2);
-time = (float)((L2.LowPart - L1.LowPart)*1000.0)/CountsPerSec*10;
+/*QueryPerformanceCounter(&L2);
+time = (float)((L2.LowPart - L1.LowPart)*1000.0)/CountsPerSec*10;*/
 //printf("time = %4.1f ", time);
 	/* initialize the matrix R */
 	for (i = 0; i < n; i++)
@@ -257,7 +256,7 @@ l1:	iter++;
 			sum += CI[j][i] * x[j];
 		sum += ci0[i];
 		s[i] = sum;
-		psi += min(0.0, sum);
+		psi += std::min(0.0, sum);
 	}
 #ifdef TRACE_SOLVER
   print_vector("s", s, mi);
@@ -350,7 +349,7 @@ l2a:/* Step 2a: determine step direction */
     t2 = inf; /* +inf */
 
   /* the step is chosen as the minimum of t1 and t2 */
-  t = min(t1, t2);
+  t = std::min(t1, t2);
 #ifdef TRACE_SOLVER
   std::cerr << "Step sizes: " << t << " (t1 = " << t1 << ", t2 = " << t2 << ") ";
 #endif
@@ -753,7 +752,7 @@ static void backward_elimination(double U[][MATRIX_DIM_440], double x[], double 
 	}
 }
 
-static void print_matrix(char* name, double A[][MATRIX_DIM_440], int n)
+static void print_matrix(const char* name, double A[][MATRIX_DIM_440], int n)
 {
 	std::ostringstream s;
 	std::string t;

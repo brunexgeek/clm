@@ -13,26 +13,23 @@
 //		June, 2011.
 ////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 
 #include <stdio.h>
-#include "cv.h"
-#include "highgui.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-#include "CLM_Lib\clm.h"
-#ifdef __cplusplus
-}
-#endif
+#include <opencv/cv.h>
+#include <opencv/highgui.h>
 
-LARGE_INTEGER PerfFreq;
+#include "CLM_Lib/CLM.h"
+
+/*LARGE_INTEGER PerfFreq;
 DWORD CountsPerSec;
 static LARGE_INTEGER L1;
-static LARGE_INTEGER L2;
+static LARGE_INTEGER L2;*/
 
-static char *OutputWinName = "Constrained Local Model Demo - OpenCV";
+#define IMAGE_NAME_MASK  "images/franck_%05d.jpg"
+
+static const char *OutputWinName = "Constrained Local Model Demo - OpenCV";
 
 long FrameCount = 0;
 
@@ -62,8 +59,7 @@ int pic_vid_main(CLM_MODEL *CLM_Model)
 	int x0 = 388, y0= 309;
 	int i=base;
 	char imgName[256];
-	char *DirName = IMAGE_FILE_DIR;
-	sprintf(imgName, "%s\\franck_%05d.jpg", DirName, base);
+	sprintf(imgName, IMAGE_NAME_MASK, base);
 
 	IplImage * input = cvLoadImage(imgName);
 
@@ -132,12 +128,12 @@ int pic_vid_main(CLM_MODEL *CLM_Model)
 	{
 		i++;
 		CLM_CopySi(&Si_Init, &Si_Final);
-		sprintf(imgName, "%s\\franck_%05d.jpg", DirName, i);
+		sprintf(imgName, IMAGE_NAME_MASK, i);
 		input = cvLoadImage(imgName);
 		cvConvertImage(input,searchimg,0);
 		cvCopy(input, DispImage);
 
-        QueryPerformanceCounter(&L1);
+        //QueryPerformanceCounter(&L1);
 
 		Options.NumInterations = 10;
 		//Options.MaxIterError = 0.015;
@@ -146,9 +142,9 @@ int pic_vid_main(CLM_MODEL *CLM_Model)
 		//CLM_DumpSi(&Si_Init);
 		//CLM_DumpSi(&Si_Final);
 
-        QueryPerformanceCounter(&L2);
+        /*QueryPerformanceCounter(&L2);
         float time = (float)(L2.LowPart - L1.LowPart)*1000.0f/CountsPerSec;
-        printf("Search time: %4.1f\n ", time);
+        printf("Search time: %4.1f\n ", time);*/
 
 
 		DrawFaceShape(DispImage, Si_Final.xy);
@@ -178,7 +174,7 @@ int pic_vid_main(CLM_MODEL *CLM_Model)
 }
 
 
-char *xmlFileName="CLMModel.xml";
+const char *xmlFileName="CLMModel.xml";
 
 #include "omp.h"
 
@@ -188,8 +184,8 @@ int main()
 	omp_set_num_threads(CURRENT_NUM_THREADS);
 
 
-	QueryPerformanceFrequency(&PerfFreq);
-	CountsPerSec = PerfFreq.LowPart;
+	/*QueryPerformanceFrequency(&PerfFreq);
+	CountsPerSec = PerfFreq.LowPart;*/
 
 
 	printf("Loading CLM Model file %s ...", xmlFileName);

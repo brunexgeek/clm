@@ -15,30 +15,22 @@
 //		June, 2011.
 ////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#include <opencv/cv.h>
+#include <opencv/highgui.h>
 
-#include "cv.h"
-#include "highgui.h"
-
-#include "clm.h"
-#include "clm_priv.h"
-
-#ifdef __cplusplus
-}
-#endif
+#include "CLM.h"
+#include "CLM_priv.h"
 
 
-#include "..\tinyxml\tinyxml.h"
+#include "tinyxml/tinyxml.h"
 
 static int ReadVecFromString(const char *str, float *f, int count);
 static int ReadMatFromString(const char *str, CvMat *Mat);
 
 
-int CLM_LoadModel(char *filename, CLM_MODEL *pModel)
+int CLM_LoadModel(const char *filename, CLM_MODEL *pModel)
 {
 
 	TiXmlDocument doc(filename);

@@ -15,21 +15,13 @@
 //		June, 2011.
 ////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#include <opencv/cv.h>
+#include <opencv/highgui.h>
 
-#include "cv.h"
-#include "highgui.h"
-
-#include "clm.h"
-#include "clm_priv.h"
-
-#ifdef __cplusplus
-}
-#endif
+#include "CLM.h"
+#include "CLM_priv.h"
 
 int CLM_Procrustes0(float *pdat, float *pbase, int numPts)
 {
@@ -233,7 +225,7 @@ FILE *psi = fopen("si.txt", "w");
 	return 0;
 }
 
-
+/*
 static SYSTEMTIME start[10];
 int CLM_StartTimer(int i)
 {
@@ -250,3 +242,4 @@ long CLM_StopTimer(int i)
 
 	return (now.wSecond-start[i].wSecond)*1000+(now.wMilliseconds-start[i].wMilliseconds);
 }
+*/

@@ -9,21 +9,13 @@
 //
 ////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#include <opencv/cv.h>
+#include <opencv/highgui.h>
 
-#include "cv.h"
-#include "highgui.h"
-
-#include "clm.h"
-#include "clm_priv.h"
-
-#ifdef __cplusplus
-}
-#endif
+#include "CLM.h"
+#include "CLM_priv.h"
 
 int CLM_MakeInitialShape(CLM_MODEL *Model, IplImage *Image, double x, double y, double w, double h, double rot, CLM_SI* Initial)
 {

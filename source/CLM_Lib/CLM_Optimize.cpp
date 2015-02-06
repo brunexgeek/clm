@@ -15,37 +15,31 @@
 //		June, 2011.
 ////////////////////////////////////////////////////////
 
-#include "stdafx.h"
-
-#ifdef __cplusplus
-extern "C" {
-#endif
+#include "StdAfx.h"
 
 #include "math.h"
 
-#include "cv.h"
-#include "highgui.h"
+#include <opencv/cv.h>
+#include <opencv/highgui.h>
 
-#include "clm.h"
-#include "clm_priv.h"
+#include "CLM.h"
+#include "CLM_priv.h"
 
-#ifdef __cplusplus
-}
-#endif
+
 
 extern FILE * fpout;
 
 
-#include "..\QuadProg++\QuadProg_136.hh"
+#include "QuadProg++/QuadProg_136.hh"
 
 
 static void DumpMat(CvMat * r);
 static void DumpVec(float *vec, int len);
 static void DumpCI(double *ci, int len);
 
-extern DWORD CountsPerSec;
+/*extern DWORD CountsPerSec;
 static LARGE_INTEGER L1;
-static LARGE_INTEGER L2;
+static LARGE_INTEGER L2;*/
 
 float CLM_Optimize(CLM_MODEL* Model, CLM_SI* Si, float *coeffs, CLM_OPTIONS * Options)
 {

@@ -2,8 +2,8 @@
 // Draw talking face shape.
 //
 ////////////////////////////////////////////////////////////////
-// 
-// Written by: 
+//
+// Written by:
 //		Xiaoguang Yan
 // Email:
 //		xiaoguang.yan@gmail.com
@@ -16,19 +16,15 @@
 ////////////////////////////////////////////////////////
 
 
-#include "stdafx.h"
-#ifdef __cplusplus
-extern "C" {
-#endif
+#include "StdAfx.h"
 
-#include "cv.h"
-#include "highgui.h"
 
-#include "CLM_Lib\clm.h"
+#include <opencv/cv.h>
+#include <opencv/highgui.h>
 
-#ifdef __cplusplus
-}
-#endif
+#include "CLM_Lib/CLM.h"
+
+
 
 static int orFace[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 24, 23, 22, 21, 0};
 static int orEbrowL[] = {24, 23, 22, 21, 26, 25, 24};
@@ -43,11 +39,11 @@ void DrawConnected(IplImage *image, float *pdat, int step, int *order, int cnt);
 
 void DrawFaceShape(IplImage *image, CvMat *xy)
 {
-	
+
 	// Draw face:
 	float *pdat =xy->data.fl;
 	int step = xy->step/sizeof(float);
-	
+
 	DrawConnected(image, pdat, step, orFace, sizeof(orFace)/sizeof(int));
 	DrawConnected(image, pdat, step, orEbrowL, sizeof(orEbrowL)/sizeof(int));
 	DrawConnected(image, pdat, step, orEbrowR, sizeof(orEbrowR)/sizeof(int));
@@ -55,7 +51,7 @@ void DrawFaceShape(IplImage *image, CvMat *xy)
 	DrawConnected(image, pdat, step, orEyeR, sizeof(orEyeR)/sizeof(int));
 	DrawConnected(image, pdat, step, orNose, sizeof(orNose)/sizeof(int));
 	DrawConnected(image, pdat, step, orMouth, sizeof(orMouth)/sizeof(int));
-	
+
 }
 
 
@@ -64,7 +60,7 @@ void DrawConnected(IplImage *image, float *pdat, int step, int *order, int cnt)
 	int i;
 
 	double x0, x1, y0, y1;
-	
+
 	for(i=0;i<cnt-1; i++)
 	{
 		x0 = pdat[order[i]*2];

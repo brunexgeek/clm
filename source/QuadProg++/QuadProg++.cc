@@ -56,7 +56,7 @@ double scalar_product(double x[], double y[], int n);
 double distance(double a, double b);
 
 // Utility functions for printing vectors and matrices
-void print_matrix(char* name, double A[][MATRIX_DIM], int n);
+void print_matrix(const char* name, double A[][MATRIX_DIM], int n);
 void print_rmatrix(char* name, double A[][MATRIX_DIM], int n, int m);
 void print_vector(char* name, double v[], int n);
 void print_ivector(char* name, int v[], int n);
@@ -709,7 +709,7 @@ void backward_elimination(double U[][MATRIX_DIM], double x[], double y[], int n)
 	}
 }
 
-void print_matrix(char* name, double A[][MATRIX_DIM], int n)
+void print_matrix(const char* name, double A[][MATRIX_DIM], int n)
 {
 	std::ostringstream s;
 	std::string t;
